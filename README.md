@@ -41,6 +41,15 @@
 
 ------
 
+## 🧪 테스트 및 커버리지
+
+| 항목              | 상태                                                                                             |
+|------------------|--------------------------------------------------------------------------------------------------|
+| **CI/CD**        | [![CI/CD](https://github.com/sb01-deokhugam-team1/sb01-deokhugam-team1/actions/workflows/cicd.yml/badge.svg)](https://github.com/sb01-deokhugam-team1/sb01-deokhugam-team1/actions/workflows/cicd.yml) |
+| **Test Coverage**| [![codecov](https://codecov.io/gh/sb01-deokhugam-team1/sb01-deokhugam-team1/branch/main/graph/badge.svg)](https://codecov.io/gh/sb01-deokhugam-team1/sb01-deokhugam-team1) |
+
+---
+
 ## 📝 팀원별 구현 기능 상세
 
 ### 민기

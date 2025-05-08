@@ -7,7 +7,7 @@ on:
 
 jobs:
   run_tests:
-    name: 🧪 테스트 실행 (테스트 제외)
+    name: 🧪 테스트 실행 및 Codecov 업로드
     if: github.event.action == 'opened' || github.event.action == 'synchronize'
     runs-on: ubuntu-latest
     steps:
@@ -19,10 +19,19 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - name: Gradle 테스트 및 JaCoCo 리포트 생성
+        run: ./gradlew clean test jacocoTestReport
 
-      - name: 테스트 실행 스킵 알림
-        run: |
-          echo "::notice::테스트 코드는 실행하지 않았지만, 빌드는 정상적으로 완료했습니다."
+      - name: Codecov Action 실행
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: build/reports/jacoco/test/jacocoTestReport.xml
+          flags: unittests
+          fail_ci_if_error: false
+
+      - name: 테스트 완료 알림
+        run: echo "::notice::테스트 및 커버리지 리포트 생성이 완료되었습니다."
 
   set_environment:
     name: 🔀 환경 설정
