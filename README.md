@@ -150,6 +150,12 @@ sb01-duckhugam-team1/
 ```
 ------
 
+## ERD
+![duckhu](https://github.com/user-attachments/assets/a194d299-9f43-4ce4-96c5-f875705b1393)
+
+
+------
+
 ## 🌐 구현 홈페이지
 http://www.deokhugam.store/
 
