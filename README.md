@@ -3,6 +3,11 @@
 - 책 읽는 즐거움을 공유하고, 지식과 감상을 나누는 책 덕후들의 커뮤니티 서비스
 - 프로젝트 기간 : 2025.04.16 ~ 2025. 05. 13
 
+
+## 📚 프로젝트 목표
+> **Duckhugam**은 책을 좋아하는 사람들을 위한 커뮤니티 서비스로, 도서, 리뷰, 대시보드 등 다양한 기능을 제공합니다.
+
+
 ## 🧑‍💻 팀원 구성
 
 |             민기                |                     이민주                     |                  김준우                          |                강소율                       |                      변희재         |
@@ -53,39 +58,108 @@
 ## 📝 팀원별 구현 기능 상세
 
 ### 민기
-
+알림 관련 도메인
 
 ### 이민주
-
+댓글 관련 도메인
 
 
 ### 김준우
-
-
+도서 관련 도메인
+OCR
+대시보드 인기 도서
 
 ### 강소율
-
-
+사용자 관련 도메인
+세션
+대시보드 파워 유저
 
 ### 변희재
+리뷰 관련 도메인 구현
+- 리뷰 정보 CRUD
+- 리뷰 목록 조회 (다양한 조건 검색, 정렬 및 커서 페이지네이션)
 
+Spring Batch를 이용한 대시보드 인기 리뷰 구현
+- 인기 리뷰 계산 후 정렬
+- 인기 리뷰 목록 조회 (기간 별 페이지네이션)
 
 ------
 
 ## 🗃️ 파일 구조
 
-```plaintext
-
 ```
-
+sb01-duckhugam-team1/
+├── src/
+   └── main/
+       ├── java/
+       │   └── duckhu/
+       │       ├── config/             # 전역 설정 파일
+       │       ├── domain/             # 도메인 모듈
+       │       │   ├── book/           # 도서 관련 모듈
+       │       │   │   ├── controller/ # 도서 관련 컨트롤러
+       │       │   │   ├── dto/        # 도서 관련 DTO
+       │       │   │   ├── entity/     # 도서 엔티티 클래스
+       │       │   │   ├── exception/  # 도서 예외 처리
+       │       │   │   ├── mapper/     # 도서 매핑 인터페이스
+       │       │   │   ├── naver/      # 네이버 API 연동 모듈
+       │       │   │   ├── ocr/        # OCR 관련 모듈
+       │       │   │   ├── repository/ # 도서 JPA 레포지토리
+       │       │   │   └── service/    # 도서 비즈니스 로직
+       │       │   ├── comment/        # 댓글 관련 모듈
+       │       │   │   ├── controller/ # 댓글 관련 컨트롤러
+       │       │   │   ├── domain/     # 댓글 엔티티 클래스
+       │       │   │   ├── dto/        # 댓글 관련 DTO
+       │       │   │   ├── exception/  # 댓글 예외 처리
+       │       │   │   ├── repository/ # 댓글 JPA 레포지토리
+       │       │   │   └── service/    # 댓글 비즈니스 로직
+       │       │   ├── notification/   # 알림 관련 모듈
+       │       │   │   ├── controller/ # 알림 컨트롤러
+       │       │   │   ├── dto/        # 알림 관련 DTO
+       │       │   │   ├── entity/     # 알림 엔티티 클래스
+       │       │   │   ├── exception/  # 알림 예외 처리
+       │       │   │   ├── mapper/     # 알림 매퍼 인터페이스
+       │       │   │   ├── repository/ # 알림 JPA 레포지토리
+       │       │   │   └── service/    # 알림 비즈니스 로직
+       │       │   ├── review/         # 리뷰 관련 모듈
+       │       │   │   ├── batch/      # 리뷰 배치 작업
+       │       │   │   ├── controller/ # 리뷰 관련 컨트롤러
+       │       │   │   ├── dto/        # 리뷰 관련 DTO
+       │       │   │   ├── entity/     # 리뷰 엔티티 클래스
+       │       │   │   ├── mapper/     # 리뷰 매핑 인터페이스
+       │       │   │   ├── repository/ # 리뷰 JPA 레포지토리
+       │       │   │   └── service/    # 리뷰 비즈니스 로직
+       │       │   └── user/           # 사용자 관련 모듈
+       │       │       ├── controller/ # 사용자 컨트롤러
+       │       │       ├── dto/        # 사용자 관련 DTO
+       │       │       ├── entity/     # 사용자 엔티티 클래스
+       │       │       ├── exception/  # 사용자 예외 처리
+       │       │       ├── mapper/     # 사용자 매핑 인터페이스
+       │       │       ├── repository/ # 사용자 JPA 레포지토리
+       │       │       └── service/    # 사용자 비즈니스 로직
+       │       │
+       │       ├── global/             # 전역 공통 모듈
+       │       │   ├── exception/      # 전역 예외 처리
+       │       │   ├── logging/        # 로깅 설정
+       │       │   ├── response/       # 공통 응답 객체
+       │       │   └── type/           # 공통 Enum 클래스
+       │       │
+       │       ├── storage/            # 파일 저장 관련 모듈
+       │       │   ├── S3Service.java
+       │       │   └── FileStorageService.java
+       │       │
+       │       └── UserAuthenticationFilter.java # 사용자 인증 필터
+       │
+       └── resources/
+           └── application.yml       # Spring Boot 애플리케이션 설정 파일
+```
 ------
 
 ## 🌐 구현 홈페이지
-
+http://www.deokhugam.store/
 
 ------
 
 ## 📄 프로젝트 회고록
-
+https://www.notion.so/5-9-1df18247604380dc807ffa48560b106d
 
 
