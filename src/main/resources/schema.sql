@@ -120,7 +120,8 @@ CREATE TABLE popular_reviews
     score         DOUBLE PRECISION,
     rank          INT,
 
-    CONSTRAINT fk_popular_reviews FOREIGN KEY (review_id) REFERENCES reviews (id) ON DELETE CASCADE
+    CONSTRAINT fk_popular_reviews FOREIGN KEY (review_id) REFERENCES reviews (id) ON DELETE CASCADE,
+    CONSTRAINT uk_popular_reviews_review_period UNIQUE (review_id, period)
 );
 
 -- 리뷰 좋아요
