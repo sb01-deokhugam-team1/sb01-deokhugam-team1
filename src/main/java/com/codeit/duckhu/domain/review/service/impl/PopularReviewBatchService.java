@@ -39,7 +39,7 @@
   private final MeterRegistry meterRegistry;
 
   /** 매일 새벽 12시에 실행 */
-  @Scheduled(cron = "0 0 11 * * ?", zone = "Asia/Seoul")
+  @Scheduled(cron = "0 0 13 * * ?", zone = "Asia/Seoul")
   @Transactional
   public void calculatePopularReviews() {
     log.info("인기 리뷰 점수 계산 및 랭킹 업데이트 시작");
